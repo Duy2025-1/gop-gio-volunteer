@@ -1,0 +1,34 @@
+# Environment & sensitive files
+.env
+.env.local
+.env.production
+
+# Composer vendor directory
+/vendor/
+composer.phar
+
+# Runtime storage (keep directory structure)
+/storage/logs/*.log
+/storage/certificates/*.pdf
+/storage/cache/*
+/storage/*.sqlite
+/storage/*.sqlite-journal
+!/storage/logs/.gitkeep
+!/storage/certificates/.gitkeep
+!/storage/cache/.gitkeep
+
+# User uploads
+/public/uploads/avatars/*
+/public/uploads/events/*
+/public/uploads/organizations/*
+!/public/uploads/avatars/.gitkeep
+!/public/uploads/events/.gitkeep
+!/public/uploads/organizations/.gitkeep
+
+# OS & IDE files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
