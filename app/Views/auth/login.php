@@ -36,54 +36,5 @@
                 </div>
             </div>
         </div>
-
-        <!-- Khung tài khoản mẫu phục vụ kiểm thử phân quyền -->
-        <div class="col-md-6 col-lg-4">
-            <div class="gg-card p-4" style="background-color:#F7F9F7;">
-                <div class="gg-section-kicker mb-1">Tài khoản trải nghiệm</div>
-                <h2 class="h5 mb-2">Chọn nhanh tài khoản theo vai trò</h2>
-                <p class="small text-muted mb-3">
-                    Nhấn vào một tài khoản bên dưới để tự động điền thông tin đăng nhập tương ứng với từng nhóm quyền trên hệ thống:
-                </p>
-
-                <div class="d-flex flex-column gap-2">
-                    <button type="button" class="btn btn-white bg-white border text-start p-2" style="border-radius:6px;"
-                            onclick="GopGioApp.fillDemoAccount('minhanh.tnv@gopgio.vn', 'Volunteer@123')">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="fw-semibold small text-dark">Tình nguyện viên (Nguyễn Minh Anh)</span>
-                            <span class="gg-badge badge-success">Tình nguyện viên</span>
-                        </div>
-                        <div class="text-muted" style="font-size:0.75rem;">minhanh.tnv@gopgio.vn</div>
-                    </button>
-
-                    <button type="button" class="btn btn-white bg-white border text-start p-2" style="border-radius:6px;"
-                            onclick="GopGioApp.fillDemoAccount('org.dhqg@gopgio.vn', 'Org@123456')">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="fw-semibold small text-dark">Đơn vị tổ chức (CLB ĐHQG TP.HCM)</span>
-                            <span class="gg-badge badge-info">Ban tổ chức</span>
-                        </div>
-                        <div class="text-muted" style="font-size:0.75rem;">org.dhqg@gopgio.vn</div>
-                    </button>
-
-                    <button type="button" class="btn btn-white bg-white border text-start p-2" style="border-radius:6px;"
-                            onclick="GopGioApp.fillDemoAccount('org.hienmau@gopgio.vn', 'Org@123456')">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="fw-semibold small text-dark">Đơn vị tiếp nhận hiến máu</span>
-                            <span class="gg-badge badge-warning">Ban tổ chức</span>
-                        </div>
-                        <div class="text-muted" style="font-size:0.75rem;">org.hienmau@gopgio.vn</div>
-                    </button>
-
-                    <button type="button" class="btn btn-white bg-white border text-start p-2" style="border-radius:6px;"
-                            onclick="GopGioApp.fillDemoAccount('admin@gopgio.vn', 'Admin@123456')">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="fw-semibold small text-dark">Quản trị viên điều phối</span>
-                            <span class="gg-badge badge-danger">Quản trị viên</span>
-                        </div>
-                        <div class="text-muted" style="font-size:0.75rem;">admin@gopgio.vn</div>
-                    </button>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
