@@ -306,16 +306,20 @@ class CertificateService
 </html>
 HTML;
 
-        $options = new Options();
-        $options->set('isRemoteEnabled', true);
-        $options->set('defaultFont', 'DejaVu Sans');
+        if (class_exists(Options::class) && class_exists(Dompdf::class)) {
+            $options = new Options();
+            $options->set('isRemoteEnabled', true);
+            $options->set('defaultFont', 'DejaVu Sans');
 
-        $dompdf = new Dompdf($options);
-        $dompdf->loadHtml($html, 'UTF-8');
-        $dompdf->setPaper('A4', 'landscape');
-        $dompdf->render();
+            $dompdf = new Dompdf($options);
+            $dompdf->loadHtml($html, 'UTF-8');
+            $dompdf->setPaper('A4', 'landscape');
+            $dompdf->render();
 
-        $pdfOutput = $dompdf->output();
+            $pdfOutput = $dompdf->output();
+        } else {
+            $pdfOutput = $this->generateFallbackPdfBytes($certificate);
+        }
 
         // Save copy in storage/certificates
         $certDir = STORAGE_PATH . '/certificates';
@@ -332,5 +336,28 @@ HTML;
         ]);
 
         return $pdfOutput;
+    }
+
+    private function generateFallbackPdfBytes(array $certificate): string
+    {
+        $code = (string)($certificate['certificate_code'] ?? 'GG-CERT');
+        $vCode = (string)($certificate['verification_code'] ?? '');
+        $hours = number_format((float)($certificate['verified_hours'] ?? 0), 1);
+        $date = (string)($certificate['issued_date'] ?? date('Y-m-d'));
+        $stream = "BT /F1 18 Tf 60 500 Td (GOP GIO VOLUNTEER - CERTIFICATE OF VOLUNTEERING) Tj "
+            . "/F1 13 Tf 0 -35 Td (Certificate Code: {$code}) Tj "
+            . "0 -25 Td (Verification Code: {$vCode}) Tj "
+            . "0 -25 Td (Verified Hours: {$hours} hours) Tj "
+            . "0 -25 Td (Issued Date: {$date}) Tj ET";
+        $len = strlen($stream);
+
+        return "%PDF-1.4\n"
+            . "1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj\n"
+            . "2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj\n"
+            . "3 0 obj << /Type /Page /Parent 2 0 R /Resources << /Font << /F1 4 0 R >> >> /MediaBox [0 0 842 595] /Contents 5 0 R >> endobj\n"
+            . "4 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj\n"
+            . "5 0 obj << /Length {$len} >> stream\n{$stream}\nendstream endobj\n"
+            . "xref\n0 6\n0000000000 65535 f \n"
+            . "trailer << /Size 6 /Root 1 0 R >>\nstartxref\n0\n%%EOF";
     }
 }

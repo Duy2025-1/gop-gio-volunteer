@@ -1,0 +1,475 @@
+/* ==========================================================================
+   GIÓ AI – TRỢ LÝ TÌNH NGUYỆN VIÊN (CHATBOT WIDGET STYLES)
+   Đồng bộ với Design System Góp Gió Volunteer (--gg-primary: #15803D)
+   ========================================================================== */
+
+.gio-ai-widget {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    z-index: 1055;
+    font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Nút Chat Nổi (Floating Launcher) */
+.gio-ai-launcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--gg-primary, #15803D);
+    color: #FFFFFF;
+    border: 1px solid #14532D;
+    border-radius: 999px;
+    padding: 10px 18px 10px 14px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(21, 128, 61, 0.25);
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    animation: gioAiFadeUp 0.35s ease-out;
+}
+
+.gio-ai-launcher:hover {
+    background-color: #14532D;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(21, 128, 61, 0.32);
+}
+
+.gio-ai-launcher:focus-visible {
+    outline: 3px solid #86EFAC;
+    outline-offset: 2px;
+}
+
+.gio-ai-launcher-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.16);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Khung Trò Chuyện (Chat Window) */
+.gio-ai-panel {
+    width: 385px;
+    height: 560px;
+    max-height: calc(100vh - 96px);
+    background-color: #FFFFFF;
+    border: 1px solid var(--gg-border, #E5E7EB);
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: gioAiFadeUp 0.22s ease-out;
+}
+
+/* Header */
+.gio-ai-header {
+    background-color: var(--gg-primary, #15803D);
+    color: #FFFFFF;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    border-bottom: 1px solid #14532D;
+    flex-shrink: 0;
+}
+
+.gio-ai-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.18);
+    color: #FFFFFF;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.gio-ai-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #FFFFFF;
+}
+
+.gio-ai-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.74rem;
+    color: #DCFCE7;
+    margin-top: 2px;
+}
+
+.gio-ai-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #4ADE80;
+    box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.3);
+}
+
+.gio-ai-header-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.gio-ai-icon-btn {
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #DCFCE7;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.gio-ai-icon-btn:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+    color: #FFFFFF;
+}
+
+/* Body / Messages Container */
+.gio-ai-body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 14px;
+    background-color: var(--gg-soft-bg, #F7F9F7);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scroll-behavior: smooth;
+}
+
+.gio-ai-conversation {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Tin nhắn AI (Bên trái) & Người dùng (Bên phải) */
+.gio-ai-msg {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    max-width: 100%;
+}
+
+.gio-ai-msg-bot {
+    justify-content: flex-start;
+}
+
+.gio-ai-msg-user {
+    justify-content: flex-end;
+}
+
+.gio-ai-msg-avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    background-color: var(--gg-light-green, #DCFCE7);
+    color: var(--gg-primary, #15803D);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.gio-ai-msg-content {
+    max-width: 84%;
+    display: flex;
+    flex-direction: column;
+}
+
+.gio-ai-msg-user .gio-ai-msg-content {
+    align-items: flex-end;
+}
+
+.gio-ai-bubble {
+    padding: 10px 13px;
+    border-radius: 10px;
+    font-size: 0.86rem;
+    line-height: 1.55;
+    word-break: break-word;
+}
+
+.gio-ai-msg-bot .gio-ai-bubble {
+    background-color: #FFFFFF;
+    color: var(--gg-text, #1E293B);
+    border: 1px solid var(--gg-border, #E5E7EB);
+    border-top-left-radius: 3px;
+}
+
+.gio-ai-msg-user .gio-ai-bubble {
+    background-color: var(--gg-primary, #15803D);
+    color: #FFFFFF;
+    border-top-right-radius: 3px;
+}
+
+.gio-ai-bubble p:last-child,
+.gio-ai-bubble ul:last-child,
+.gio-ai-bubble ol:last-child {
+    margin-bottom: 0;
+}
+
+.gio-ai-bubble ul,
+.gio-ai-bubble ol {
+    padding-left: 18px;
+    margin-top: 4px;
+    margin-bottom: 6px;
+}
+
+.gio-ai-bubble li {
+    margin-bottom: 3px;
+}
+
+.gio-ai-bubble code {
+    font-family: Consolas, Monaco, monospace;
+    font-size: 0.8rem;
+    background-color: #F1F5F9;
+    color: #0F172A;
+    padding: 1px 5px;
+    border-radius: 4px;
+}
+
+.gio-ai-bubble a {
+    color: var(--gg-primary, #15803D);
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.gio-ai-msg-user .gio-ai-bubble a {
+    color: #DCFCE7;
+}
+
+.gio-ai-msg-time {
+    font-size: 0.7rem;
+    color: var(--gg-muted, #64748B);
+    margin-top: 3px;
+    padding: 0 2px;
+}
+
+/* Câu hỏi gợi ý */
+.gio-ai-suggestions {
+    margin-top: 10px;
+    padding-left: 34px;
+}
+
+.gio-ai-suggestions-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gg-muted, #64748B);
+    margin-bottom: 6px;
+}
+
+.gio-ai-suggestions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.gio-ai-suggestion-item {
+    text-align: left;
+    background-color: #FFFFFF;
+    color: var(--gg-primary, #15803D);
+    border: 1px solid #BBF7D0;
+    border-radius: 8px;
+    padding: 7px 11px;
+    font-size: 0.81rem;
+    font-weight: 500;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.gio-ai-suggestion-item:hover {
+    background-color: var(--gg-light-green, #DCFCE7);
+    border-color: var(--gg-primary, #15803D);
+}
+
+/* Hiệu ứng đang suy nghĩ */
+.gio-ai-typing-bubble {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 13px;
+}
+
+.gio-ai-typing-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.gio-ai-typing-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--gg-primary, #15803D);
+    animation: gioAiBounce 1.2s infinite ease-in-out;
+}
+
+.gio-ai-typing-dots span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.gio-ai-typing-dots span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.gio-ai-typing-label {
+    font-size: 0.78rem;
+    color: var(--gg-muted, #64748B);
+}
+
+/* Khung thông báo lỗi & Nút thử lại */
+.gio-ai-error {
+    background-color: #FEF2F2;
+    border: 1px solid #FECACA;
+    color: #991B1B;
+    border-radius: 8px;
+    padding: 9px 12px;
+}
+
+.gio-ai-retry-btn {
+    background-color: #FFFFFF;
+    color: #991B1B;
+    border: 1px solid #FCA5A5;
+    border-radius: 5px;
+    padding: 3px 10px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.gio-ai-retry-btn:hover {
+    background-color: #FEE2E2;
+}
+
+/* Footer / Input Area */
+.gio-ai-footer {
+    padding: 10px 12px;
+    background-color: #FFFFFF;
+    border-top: 1px solid var(--gg-border, #E5E7EB);
+    flex-shrink: 0;
+}
+
+.gio-ai-input-wrap {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    background-color: #F8FAFC;
+    border: 1px solid var(--gg-border, #E5E7EB);
+    border-radius: 8px;
+    padding: 6px 8px 6px 11px;
+    transition: border-color 0.15s ease;
+}
+
+.gio-ai-input-wrap:focus-within {
+    border-color: var(--gg-primary, #15803D);
+    background-color: #FFFFFF;
+}
+
+.gio-ai-input {
+    flex: 1 1 auto;
+    border: none;
+    background: transparent;
+    resize: none;
+    font-size: 0.86rem;
+    line-height: 1.45;
+    color: var(--gg-text, #1E293B);
+    max-height: 92px;
+    overflow-y: auto;
+    padding: 2px 0;
+}
+
+.gio-ai-input:focus {
+    outline: none;
+}
+
+.gio-ai-send-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--gg-primary, #15803D);
+    color: #FFFFFF;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.gio-ai-send-btn:hover:not(:disabled) {
+    background-color: #14532D;
+}
+
+.gio-ai-send-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.gio-ai-hint,
+.gio-ai-char-count {
+    font-size: 0.7rem;
+    color: var(--gg-muted, #64748B);
+}
+
+@keyframes gioAiFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gioAiBounce {
+    0%, 80%, 100% {
+        transform: scale(0.75);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsive trên Tablet và Điện thoại di động */
+@media (max-width: 576px) {
+    .gio-ai-widget {
+        bottom: 14px;
+        right: 14px;
+    }
+
+    .gio-ai-panel {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+        height: calc(100vh - 80px);
+        max-height: 540px;
+        border-radius: 12px;
+    }
+
+    .gio-ai-launcher {
+        padding: 10px 15px;
+    }
+}

@@ -22,6 +22,8 @@ $currentUri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
     <!-- Custom Góp Gió Volunteer CSS -->
     <link href="/assets/css/style.css?v=2.1" rel="stylesheet">
+    <!-- Gió AI Chatbot CSS -->
+    <link href="/assets/css/chatbot.css?v=1.0" rel="stylesheet">
 </head>
 <body>
 
@@ -269,12 +271,17 @@ $currentUri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
     </div>
 </div>
 
+<!-- Gió AI – Trợ lý tình nguyện viên (Floating Chat Widget) -->
+<?php require APP_PATH . '/Views/layouts/chatbot.php'; ?>
+
 <!-- Lucide Icons -->
 <script src="https://unpkg.com/lucide@latest"></script>
 <!-- Bootstrap 5.3 JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- App JS -->
 <script src="/assets/js/app.js"></script>
+<!-- Gió AI Chatbot JS -->
+<script src="/assets/js/chatbot.js?v=1.0"></script>
 <?php if (!empty($flashes)): ?>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
