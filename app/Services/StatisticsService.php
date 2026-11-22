@@ -47,7 +47,7 @@ class StatisticsService
     }
 
     /**
-     * Module 14: Leaderboards (strictly only Approved volunteer hours!)
+     * Bảng xếp hạng Tình nguyện viên (chỉ tính số giờ đã được duyệt Approved)
      */
     public function getTopVolunteers(string $period = 'all', int $limit = 10): array
     {
