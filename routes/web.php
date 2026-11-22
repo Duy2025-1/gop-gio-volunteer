@@ -5,6 +5,7 @@ use App\Controllers\AdminController;
 use App\Controllers\AttendanceController;
 use App\Controllers\AuthController;
 use App\Controllers\CertificateController;
+use App\Controllers\ChatController;
 use App\Controllers\EventController;
 use App\Controllers\HomeController;
 use App\Controllers\NotificationController;
@@ -93,3 +94,8 @@ $router->get('/api/notifications/unread', [NotificationController::class, 'unrea
 $router->post('/notifications/{id}/read', [NotificationController::class, 'markRead']);
 $router->post('/notifications/read-all', [NotificationController::class, 'markAllRead']);
 $router->post('/notifications/{id}/delete', [NotificationController::class, 'delete']);
+
+// Gió AI Chatbot API
+$router->get('/api/chat/history', [ChatController::class, 'history']);
+$router->post('/api/chat/send', [ChatController::class, 'send']);
+$router->post('/api/chat/clear', [ChatController::class, 'clear']);
