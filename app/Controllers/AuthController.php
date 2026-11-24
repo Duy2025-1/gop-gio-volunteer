@@ -99,10 +99,10 @@ class AuthController extends Controller
             }
             $token = $this->authService->createPasswordResetToken($email);
             if ($token !== null) {
-                Session::setFlash('success', 'Hệ thống đã tạo mã đặt lại mật khẩu. Trong môi trường demo, bạn có thể đặt lại mật khẩu ngay bên dưới.');
+                Session::setFlash('success', 'Đã xác nhận email tài khoản. Vui lòng nhập mật khẩu mới bên dưới để hoàn tất.');
                 $this->render('auth/forgot_password', [
                     'pageTitle' => 'Đặt lại mật khẩu – Góp Gió Volunteer',
-                    'demoResetToken' => $token,
+                    'resetToken' => $token,
                     'email' => $email,
                 ]);
                 return;

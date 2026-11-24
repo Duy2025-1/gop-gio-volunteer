@@ -241,7 +241,7 @@ class AttendanceService
         // Exact formula required by specification: (Check-out - Check-in) / 3600
         $rawHours = round($diffSeconds / 3600, 2);
 
-        // If checked in & out within < 60 seconds during a live demo without custom time, credit 0.5h minimum for demo usability
+        // Áp dụng mức tối thiểu 0.5h nếu Check-in và Check-out cách nhau dưới 60 giây khi kiểm tra trực tiếp
         if ($customCheckOutTime === null && $diffSeconds < 60) {
             $rawHours = min(1.00, (float)$reg['max_hours']);
         }

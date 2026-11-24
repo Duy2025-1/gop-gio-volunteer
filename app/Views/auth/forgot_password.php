@@ -6,24 +6,24 @@
                 <h1 class="h3 mb-2">Khôi phục mật khẩu</h1>
                 <p class="small text-muted mb-4">Nhập địa chỉ email đã đăng ký tài khoản Góp Gió Volunteer để tạo mã xác thực đặt lại mật khẩu.</p>
 
-                <?php if (empty($demoResetToken)): ?>
+                <?php if (empty($resetToken)): ?>
                     <form action="/forgot-password" method="POST">
                         <?= csrf_field() ?>
                         <div class="mb-3">
                             <label class="form-label">Email tài khoản</label>
                             <input type="email" name="email" class="form-control" placeholder="email@gopgio.vn" required>
                         </div>
-                        <button type="submit" class="btn btn-gg-primary w-100 py-2">Tạo yêu cầu đặt lại mật khẩu</button>
+                        <button type="submit" class="btn btn-gg-primary w-100 py-2">Tiếp tục đặt lại mật khẩu</button>
                     </form>
                 <?php else: ?>
                     <div class="alert alert-success small">
-                        Mã xác thực khôi phục mật khẩu cho tài khoản <strong><?= e($email ?? '') ?></strong> đã được khởi tạo.
+                        Đã xác nhận tài khoản <strong><?= e($email ?? '') ?></strong>. Vui lòng thiết lập mật khẩu mới bên dưới.
                     </div>
                     <form action="/reset-password" method="POST">
                         <?= csrf_field() ?>
                         <div class="mb-3">
-                            <label class="form-label">Mã xác thực khôi phục</label>
-                            <input type="text" name="reset_token" class="form-control bg-light" value="<?= e($demoResetToken) ?>" readonly>
+                            <label class="form-label">Mã xác nhận</label>
+                            <input type="text" name="reset_token" class="form-control bg-light" value="<?= e($resetToken) ?>" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Mật khẩu mới *</label>
