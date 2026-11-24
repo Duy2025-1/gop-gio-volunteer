@@ -6,9 +6,7 @@ namespace App\Core;
 use PDO;
 use PDOException;
 
-/**
- * PDO Database Manager supporting MySQL 8.0 (Primary) and automatic SQLite fallback for local testing/demo
- */
+
 class Database
 {
     private static ?PDO $instance = null;
@@ -71,18 +69,14 @@ class Database
         return self::$driver;
     }
 
-    /**
-     * Set custom PDO connection (used by isolated integration tests)
-     */
+    
     public static function setConnection(?PDO $pdo, string $driver = 'sqlite'): void
     {
         self::$instance = $pdo;
         self::$driver = $driver;
     }
 
-    /**
-     * Initialize or connect to SQLite database mirror from database/schema.sql & database/seed.sql
-     */
+    
     public static function connectSqlite(?string $customPath = null, bool $forceReset = false): PDO
     {
         $sqlitePath = $customPath ?? (STORAGE_PATH . '/gop_gio_local.sqlite');
@@ -100,7 +94,7 @@ class Database
         $pdo->exec('PRAGMA foreign_keys = ON;');
         $pdo->exec('PRAGMA busy_timeout = 5000;');
 
-        // Register MySQL-compatible helper functions for SQLite compatibility
+       
         if (method_exists($pdo, 'sqliteCreateFunction')) {
             $pdo->sqliteCreateFunction('SHA2', function ($str, $bits = 256) {
                 return hash('sha' . (int)$bits, (string)$str);
@@ -119,9 +113,7 @@ class Database
         return $pdo;
     }
 
-    /**
-     * Converts MySQL 8.0 DDL & Seed SQL into SQLite-compatible statements and executes them
-     */
+    
     public static function initializeSqliteFromSqlFiles(PDO $pdo): void
     {
         $schemaSql = file_get_contents(DATABASE_PATH . '/schema.sql');
@@ -152,7 +144,7 @@ class Database
 
     private static function convertMysqlToSqliteStatements(string $sql): array
     {
-        // Strip SQL line comments
+       
         $lines = explode("\n", $sql);
         $cleanLines = [];
         foreach ($lines as $line) {
@@ -164,7 +156,7 @@ class Database
         }
         $cleanSql = implode("\n", $cleanLines);
 
-        // Split by semicolon at end of line
+        
         $rawStatements = preg_split('/;\s*(\r?\n|$)/', $cleanSql) ?: [];
         $result = [];
 
