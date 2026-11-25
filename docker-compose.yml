@@ -64,7 +64,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root_secret_2026}
       TZ: Asia/Ho_Chi_Minh
     ports:
-      - "127.0.0.1:${MYSQL_EXTERNAL_PORT:-33060}:3306"
+      - "127.0.0.1:${MYSQL_EXTERNAL_PORT:-3309}:3306"
     volumes:
       - gopgio_mysql_data:/var/lib/mysql
       - ./database/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
@@ -90,7 +90,7 @@ services:
       PMA_PORT: 3306
       UPLOAD_LIMIT: 32M
     ports:
-      - "127.0.0.1:${PMA_PORT:-8081}:80"
+      - "127.0.0.1:${PMA_PORT:-8082}:80"
     depends_on:
       db:
         condition: service_healthy
